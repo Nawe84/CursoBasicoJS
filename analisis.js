@@ -1,14 +1,5 @@
-const salariosCol = colombia.map(
-    function (personita) {
-        return personita.salary;
-    }
-); 
-
-const salariosColSorted = salariosCol.sort(
-    function (salaryA, salaryB) {
-        return salaryA-salaryB;
-    }
-);
+//Helpers --> funciones que no son parte de la 
+//logica de negocio pero son necesarias
 
 function esPar(numerito) {
     return (numerito % 2 === 0);
@@ -25,6 +16,7 @@ function calcularMediaAritmetica(lista) {
     return promedioLista
 };
 
+//calculadora de mediana
 function medianaSalarios(lista) {
     const mitad = parseInt(lista.length /2);
 
@@ -39,6 +31,42 @@ function medianaSalarios(lista) {
     }
 }
 
+//Mediana general
+const salariosCol = colombia.map(
+    function (personita) {
+        return personita.salary;
+    }
+); 
+
+const salariosColSorted = salariosCol.sort(
+    function (salaryA, salaryB) {
+        return salaryA-salaryB;
+    }
+);
+
+
+const medianaGeneralCol = medianaSalarios(salariosColSorted)
+
+//Mediana del top 10%
+//obtengo una parte de un array con la funcion splice
+//esta variable recibe 2 argumentos, el primero es en que posición comienzo 
+//y la segunda es cuantas posiciones avanzo.
+//todo lo que este en ese rango lo quita del array
+
+
+
+const sliceStart = parseInt(salariosColSorted.length * (100 - 10) / 100);
+const sliceEnd = salariosColSorted.length;
+
+const salariosColTop10 = salariosColSorted.slice(
+    sliceStart,
+    sliceEnd,
+)
+
+const medianaTop10Col = medianaSalarios(salariosColTop10)
+
+
 console.log(
-    medianaSalarios(salariosColSorted)
+    medianaGeneralCol,
+    medianaTop10Col,
     );
